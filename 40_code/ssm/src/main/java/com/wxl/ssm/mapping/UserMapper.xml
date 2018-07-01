@@ -12,6 +12,13 @@
   <sql id="Base_Column_List" >
     ID, loginname, PASSWORD, STATUS, createdate, username
   </sql>
+  <!-- 用户登录 -->
+  <select id="selectByNameAndPass" resultMap="BaseResultMap">
+    select 
+    *
+    from user_inf
+    where loginname = #{0} and PASSWORD = #{1}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
