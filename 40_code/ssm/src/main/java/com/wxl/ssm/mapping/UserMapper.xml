@@ -15,16 +15,32 @@
   <!-- 用户登录 -->
   <select id="selectByNameAndPass" resultMap="BaseResultMap">
     select 
-    *
+    <include refid="Base_Column_List" />
     from user_inf
     where loginname = #{0} and PASSWORD = #{1}
   </select>
+    <!-- 查找用户总数 -->
+  <select id="selectCount" resultMap="BaseResultMap">
+    select 
+    count(*)
+    from user_inf
+  </select>
+  <!-- 分页查找 -->
+  <select id="selectByPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_inf
+    limit #{firstLimitParam},#{pageSize}
+  </select>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from user_inf
     where ID = #{id,jdbcType=INTEGER}
   </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user_inf
     where ID = #{id,jdbcType=INTEGER}
